@@ -1,14 +1,16 @@
-def solution(n: int):
-    answer = 0
-    lenght = 1
-    for i in range(n // 2):
-        if i == 0:
-            answer = arr[i][len(arr) // 2] + arr[-1][len(arr) // 2]
-            lenght += 2
-        for l in range(lenght):
-            answer += arr[i][(len(arr) // 2) - i]
+def solution():
+    answer = sum(arr[n//2])
+    start = n // 2
+    length = 1
 
-    answer += sum(arr[n // 2])
+    for i in range(n // 2):
+        answer += sum(arr[i][start:start + length])
+        answer += sum(arr[-(i+1)][start:start + length])
+
+        start -= 1
+        length += 2
+
+    return answer
 
 
 if __name__ == '__main__':
@@ -17,6 +19,5 @@ if __name__ == '__main__':
         arr = list()
         n = int(input())
         for maps in range(n):
-            arr = list(input().split())
-        print(arr)
-        print(f"#{cnt + 1} {arr[0]}") if n == 1 else print(f"#{cnt + 1} {solution(n)}")
+            arr.append(list(map(int, input().strip())))
+        print(f"#{cnt + 1} {sum(arr[0])}") if n == 1 else print(f"#{cnt + 1} {solution()}")
