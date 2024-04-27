@@ -1,4 +1,7 @@
+import heapq
 INF = int(1e9)
+
+
 
 
 def get_smallest_node():
@@ -14,18 +17,19 @@ def get_smallest_node():
 def dijkstra():
     visited[start] = True
     distance[start] = 0
-    for index, value in enumerate(graph[start]):
-        if value != INF:
-            distance[index] = value
-    for _ in range(nodes - 1):
-        now = get_smallest_node()
-        visited[now] = True
+    heap = []
+    heapq.heappush(heap, (0, start))
+    while heap:
+        cur_dist, node = heapq.heappop(heap)
 
-        for index, value in enumerate(graph[now]):
-            cost = distance[now] + value
-            if cost < distance[index]:
-                distance[index] = cost
+        if distance[node] < cur_dist:
+            continue
 
+        for index, weight in enumerate(graph[node]):
+            total = cur_dist + weight
+            if total < distance[index]:
+                distance[index] = total
+                heapq.heappush(heap, (total, index))
 
 if __name__ == "__main__":
 
@@ -45,7 +49,12 @@ if __name__ == "__main__":
     for i in range(1, nodes + 1):
         print(f"distance: {distance[i]}") if distance[i] != INF else print("no path")
 
+
+
 """
+=== sample ===
+
+
 6 11
 1
 1 2 2
