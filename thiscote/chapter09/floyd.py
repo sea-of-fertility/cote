@@ -3,10 +3,9 @@ INF = int(1e9)
 
 def floyd():
     for k in range(1, nodes+1):
-        for a in range(1, nodes+1):
-            for b in range(1, nodes+1):
+        for a in range(1, nodes + 1):
+            for b in range(1, nodes + 1):
                 graph[a][b] = min(graph[a][b], graph[a][k] + graph[k][b])
-
 
 if __name__ == "__main__":
     nodes = int(input())

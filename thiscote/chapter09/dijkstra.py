@@ -1,4 +1,3 @@
-
 import heapq
 
 INF = int(1e9)
@@ -21,15 +20,17 @@ def dijkstra():
     heapq.heappush(heap, (0, start))
 
     while heap:
-        cur_dist, node = heapq.heappop(heap)
-        if distance[node] < cur_dist:
+        weight, start_node = heapq.heappop(heap)
+
+        if distance[start_node] < weight:
             continue
 
-        for index, weight in enumerate(graph[node]):
-            total = cur_dist + weight
-            if total < distance[index]:
-                distance[index] = total
-                heapq.heappush(heap, (total, index))
+        for index, value in enumerate(graph[start_node]):
+            cur_weight = value + weight
+
+            if cur_weight < distance[index]:
+                heapq.heappush(heap, (cur_weight, index))
+                distance[index] = cur_weight
 
 
 if __name__ == "__main__":
@@ -37,8 +38,6 @@ if __name__ == "__main__":
     nodes, edge = map(int, input().split())
     start = int(input())
     graph = [[INF for i in range(nodes + 1)] for _ in range(nodes + 1)]
-
-    visited_order = []
 
     visited = [False for _ in range(nodes + 1)]
     distance = [INF for i in range(nodes + 1)]
@@ -48,7 +47,6 @@ if __name__ == "__main__":
         graph[s][e] = w
 
     dijkstra()
-    print(visited_order)
 
     for i in range(1, nodes + 1):
         print(f"distance: {distance[i]}") if distance[i] != INF else print("no path")
