@@ -2,10 +2,10 @@ INF = int(1e9)
 
 
 def floyd():
-    for k in range(n + 1):
+    for middle in range(n + 1):
         for a in range(n + 1):
             for b in range(n + 1):
-                graph[a][b] = min(graph[a][b], graph[a][k] + graph[k][b])
+                graph[a][b] = min(graph[a][b], graph[a][middle] + graph[middle][b])
 
 
 if __name__ == "__main__":
