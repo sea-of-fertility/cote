@@ -15,7 +15,7 @@ def solution():
                 if -1 < dy < n and -1 < dx < n and t < s:
                     if graph[dy][dx] == 0:
                         graph[dy][dx] = v
-                        de.append([v, t+1, dy, dx])
+                        de.append([v, t + 1, dy, dx])
 
 
 if __name__ == "__main__":
