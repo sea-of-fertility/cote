@@ -23,8 +23,6 @@ def solution():
             c_x = dx[m] + x
             if 0 <= c_y < n and 0 <= c_x < n:
                 value = weight + graph[c_y][c_x]
-                if distance[c_y][c_x] < graph[c_y][c_x]:
-                    continue
 
                 if value < distance[c_y][c_x]:
                     distance[c_y][c_x] = value
