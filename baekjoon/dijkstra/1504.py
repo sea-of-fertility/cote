@@ -19,10 +19,10 @@ def solution(start, destination):
             continue
 
         for value, new_node in graph[node]:
-            value += weight
-            if value < distance[new_node]:
-                distance[new_node] = value
-                heapq.heappush(heap, (value, new_node))
+            new_weight = weight + value
+            if new_weight < distance[new_node]:
+                distance[new_node] = new_weight
+                heapq.heappush(heap, (new_weight, new_node))
 
     return distance[destination]
 
@@ -33,9 +33,12 @@ if __name__ == "__main__":
 
     for _ in range(e):
         a, b, c = map(int, input().split())
-        graph[a].append([c, b])
-        graph[b].append([c, a])
+        graph[a].append((c, b))
+        graph[b].append((c, a))
     v1, v2 = map(int, input().split())
 
-    answer = solution(1, v1) + solution(v2, n) + solution(v1, v2)
+    path1 = solution(1, v1) + solution(v1, v2) + solution(v2, n)
+    path2 = solution(1, v2) + solution(v2, v1) + solution(v1, n)
+    answer = min(path1, path2)
+
     print(answer) if answer < INF else print(-1)
