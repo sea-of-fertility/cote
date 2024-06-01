@@ -15,7 +15,6 @@ def solution():
         mid = (start + end) // 2
         find = find_price(mid)
         if find <= m:
-
             start = mid + 1
             answer = mid
         else:
