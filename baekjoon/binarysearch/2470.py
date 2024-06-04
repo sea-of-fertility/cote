@@ -1,31 +1,45 @@
 import sys
 
 input = sys.stdin.readline
+INF = sys.maxsize
 
 
-def find_quantity(length):
-    return sum(item // length for item in arr)
+def solution():
+    min_value = INF
+    answer = []
 
+    for index in range(len(arr) - 1):
+        cur_value = arr[index]
+        start = arr[index + 1]
+        end = len(arr) - 1
+        while start <= end:
+            mid = (start + end) // 2
+            num = cur_value + arr[mid]
 
-def binary():
-    start = 1
-    end = arr[-1]
-    answer = 0
-    while start <= end:
-        mid = (start + end) // 2
-        quantity = find_quantity(mid)
+            if abs(min_value) > abs(num):
+                min_value = abs(num)
+                answer = [arr[index], arr[mid]]
 
-        if m <= quantity:
-            start = mid + 1
-            answer = mid
-        else:
-            end = mid - 1
-    return answer
+            if num == 0:
+                break
+
+            if num > 0:
+                if abs(num) > 0:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            else:
+                if abs(num) > 0:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+
+    for item in answer:
+        print(item, end=" ")
 
 
 if __name__ == "__main__":
-    m, n = map(int, input().split())
+    n = int(input())
     arr = list(map(int, input().split()))
     arr.sort()
-    binary1 = binary()
-    print(binary1)
+    solution()
