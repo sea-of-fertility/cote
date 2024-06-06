@@ -10,15 +10,15 @@ def solution():
 
     for index in range(len(arr) - 1):
         cur_value = arr[index]
-        start = arr[index + 1]
+        start = index + 1
         end = len(arr) - 1
         while start <= end:
             mid = (start + end) // 2
             num = cur_value + arr[mid]
 
             if abs(min_value) > abs(num):
-                min_value = abs(num)
-                answer = [arr[index], arr[mid]]
+                min_value = num
+                answer = [cur_value, arr[mid]]
 
             if num == 0:
                 break
@@ -29,7 +29,7 @@ def solution():
                 else:
                     start = mid + 1
             else:
-                if abs(num) > 0:
+                if num > 0:
                     start = mid + 1
                 else:
                     end = mid - 1
