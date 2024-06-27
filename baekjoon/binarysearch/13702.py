@@ -18,10 +18,8 @@ def solution():
         if cup >= k:
             start = mid + 1
             answer = mid
-
         else:
             end = mid - 1
-
     return answer
 
 
@@ -29,3 +27,4 @@ if __name__ == "__main__":
     n, k = map(int, input().split())
     arr = sorted([int(input()) for _ in range(n)])
     print(solution())
+    
