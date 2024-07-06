@@ -35,11 +35,11 @@ def solution():
                 answer = graph[new_y][new_x]
                 de.append((new_y, new_x))
     if check():
-       print(-1)
+        print(-1)
     elif answer == 0:
         print(answer)
     else:
-        print(answer-1)
+        print(answer - 1)
 
 
 if __name__ == "__main__":
