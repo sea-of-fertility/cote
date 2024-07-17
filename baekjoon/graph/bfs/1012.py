@@ -12,11 +12,11 @@ def bfs(col, row):
         dy, dx = de.popleft()
         graph[dy][dx] = False
         for d in dx_dy:
-            dy += d[0]
-            dx += d[1]
-            if 0 <= dy < n and 0 <= dx < m and graph[dy][dx]:
-                graph[dy][dx] = False
-                de.append((dy, dx))
+            new_dy = dy + d[0]
+            new_dx = dx + d[1]
+            if 0 <= new_dy < n and 0 <= new_dx < m and graph[new_dy][new_dx]:
+                graph[new_dy][new_dx] = False
+                de.append((new_dy, new_dx))
 
 
 def solution():
