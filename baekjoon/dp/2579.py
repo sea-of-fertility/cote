@@ -4,26 +4,21 @@ import sys
 input = sys.stdin.readline
 
 
-def solution(arr):
-    answer = sum(arr)
-    index = len(arr) - 1
-
-    while index > 1:
-        if arr[index-1] < arr[index-2]:
-            value = arr[index-1]
-            index -= 2
-        else:
-            value = arr[index-2]
-            index -= 3
-        answer -= value
-
-    print(answer)
+def solution(stair):
+    dp = [0] * len(stair)
+    dp[0] = stair[0]
+    dp[1] = stair[0] + stair[1]
+    dp[2] = max(stair[0] + stair[2], stair[1] + stair[2])
+    for index in range(3, len(stair)):
+        dp[index] = max(dp[index-3] + stair[index-1] + stair[index], dp[index-2] + stair[index])
+    print(dp[-1])
 
 
 def main():
     n = int(input().strip())
-    dp = [int(input().strip()) for _ in range(n)]
-    solution(dp)
+
+    stair = [int(input().strip()) for _ in range(n)]
+    print(sum(stair[0:n])) if n <= 2 else solution(stair)
 
 
 if __name__ == "__main__":
