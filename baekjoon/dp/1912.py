@@ -5,13 +5,11 @@ input = sys.stdin.readline
 
 
 def solution(n, arr):
-    result = min(arr)
     dp = [0] * n
-
     dp[0] = arr[0]
     for index in range(1, n):
         dp[index] = max(dp[index-1] + arr[index], arr[index])
-    print(result)
+    print(max(dp))
 
 
 def main():
